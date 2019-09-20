@@ -18,6 +18,7 @@ public class HexGrid : MonoBehaviour
     HexCell[] cells;
     
     void Awake () {
+        Loger.Log("hhh");
         cells = new HexCell[height * width];
         gridCanvas = GetComponentInChildren<Canvas>();
         hexMesh = GetComponentInChildren<HexMesh>();
