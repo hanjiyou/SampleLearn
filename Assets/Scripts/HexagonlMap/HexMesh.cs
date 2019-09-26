@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/// <summary>
+/// 六边形网格组件类
+/// </summary>
 [RequireComponent(typeof(MeshFilter),typeof(MeshRenderer))]
 public class HexMesh : MonoBehaviour
 {
@@ -14,8 +17,11 @@ public class HexMesh : MonoBehaviour
         vertices = new List<Vector3>();
         triangles = new List<int>();
     }
-
-    public void Triangulate (HexCell[] cells) {
+    /// <summary>
+    /// 三角化所有的网格单元
+    /// </summary>
+    /// <param name="cells"></param>
+    public void TriangulateAllHexCell (HexCell[] cells) {
         hexMesh.Clear();
         vertices.Clear();
         triangles.Clear();
@@ -27,6 +33,16 @@ public class HexMesh : MonoBehaviour
         hexMesh.RecalculateNormals();
     }
     void Triangulate (HexCell cell) {
+        Vector3 center = cell.transform.localPosition;
+        for (int i = 0; i < 6; i++)
+        {
+            AddTriangle(
+                center,
+                center + HexMetrics.corners[i%6],
+                center + HexMetrics.corners[(i+1)%6]
+            );
+        }
+     
     }
     /// <summary>
     /// 添加三角形

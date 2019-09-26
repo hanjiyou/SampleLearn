@@ -6,5 +6,5 @@ using UnityEngine;
 /// </summary>
 public class HexCell : MonoBehaviour
 {
-    
+    public HexCoordinates coordinates;
 }

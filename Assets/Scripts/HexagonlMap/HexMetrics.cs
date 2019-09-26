@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 六边形基本属性类
+/// </summary>
 public class HexMetrics
 {
     public const float outerRadius = 10f;
