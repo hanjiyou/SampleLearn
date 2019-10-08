@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// 六边形网格组件类
+/// 自定义六边形网格组件类
 /// </summary>
 [RequireComponent(typeof(MeshFilter),typeof(MeshRenderer))]
 public class HexMesh : MonoBehaviour
@@ -12,12 +12,14 @@ public class HexMesh : MonoBehaviour
     List<Vector3> vertices;
     List<int> triangles;
     private MeshCollider meshCollider;
+    private List<Color> colors;
     void Awake () {
         GetComponent<MeshFilter>().mesh = hexMesh = new Mesh();
         meshCollider = gameObject.AddComponent<MeshCollider>();
         hexMesh.name = "Hex Mesh";
         vertices = new List<Vector3>();
         triangles = new List<int>();
+        colors = new List<Color>();
     }
     /// <summary>
     /// 三角化所有的网格单元
@@ -27,13 +29,16 @@ public class HexMesh : MonoBehaviour
         hexMesh.Clear();
         vertices.Clear();
         triangles.Clear();
+        colors.Clear();
+        
         for (int i = 0; i < cells.Length; i++) {
             Triangulate(cells[i]);
         }
         hexMesh.vertices = vertices.ToArray();
         hexMesh.triangles = triangles.ToArray();
+        hexMesh.colors = colors.ToArray();
         hexMesh.RecalculateNormals();
-        meshCollider.sharedMesh = hexMesh;
+        meshCollider.sharedMesh = hexMesh;//在完成三角化之后将我们的网格物体设置给碰撞器。
     }
     void Triangulate (HexCell cell) {
         Vector3 center = cell.transform.localPosition;
@@ -44,6 +49,7 @@ public class HexMesh : MonoBehaviour
                 center + HexMetrics.corners[i%6],
                 center + HexMetrics.corners[(i+1)%6]
             );
+            AddTriangleColor(cell.color);
         }
      
     }
@@ -58,8 +64,17 @@ public class HexMesh : MonoBehaviour
         vertices.Add(v1);
         vertices.Add(v2);
         vertices.Add(v3);
-        triangles.Add(vertexIndex);
+        triangles.Add(vertexIndex);   
         triangles.Add(vertexIndex + 1);
         triangles.Add(vertexIndex + 2);
+    }
+    /// <summary>
+    /// 设置三角形颜色（分别对三个顶点）
+    /// </summary>
+    /// <param name="color"></param>
+    void AddTriangleColor (Color color) {
+        colors.Add(color);
+        colors.Add(color);
+        colors.Add(color);
     }
 }
