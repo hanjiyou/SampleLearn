@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// 自定义六边形网格组件类
+/// 自定义六边形地图网格组件类
 /// </summary>
 [RequireComponent(typeof(MeshFilter),typeof(MeshRenderer))]
 public class HexMesh : MonoBehaviour

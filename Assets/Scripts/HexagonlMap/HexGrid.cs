@@ -46,6 +46,27 @@ public class HexGrid : MonoBehaviour
         cell.transform.localPosition = position;
         cell.coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
         cell.color = defaultColor;
+
+        if (x > 0)//从每一行第二个开始 设置邻居(第1个被设置)
+        {
+            cell.SetNeighbor(HexDirection.W,cells[i-1]);
+        }
+        if (z > 0) {
+            if ((z & 1) == 0) {//通过与运算 判断z为偶数
+                cell.SetNeighbor(HexDirection.SE, cells[i - width]);
+                if (x > 0) {//偶数行 从第2个设置西南
+                    cell.SetNeighbor(HexDirection.SW, cells[i - width - 1]);
+                }
+            }
+            else//奇数行
+            {
+                cell.SetNeighbor(HexDirection.SW, cells[i - width]);//奇数行所有网格都有西南
+                if (x < width - 1)//奇数行除了最后一个 都有东南
+                {
+                    cell.SetNeighbor(HexDirection.SE, cells[i - width + 1]); 
+                }
+            }
+        }
         
         Text label = Instantiate(cellLabelPrefab);
         label.rectTransform.SetParent(gridCanvas.transform, false);
