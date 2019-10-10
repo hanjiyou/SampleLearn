@@ -5,7 +5,7 @@ using UnityEngine;
 /// 六边形邻居方向枚举
 /// </summary>
 public enum HexDirection {
-    NE, E, SE, SW, W, NW
+    NE=0, E, SE, SW, W, NW
 } 
 /// <summary>
 /// 六边形邻居方向枚举扩展方法
@@ -14,6 +14,24 @@ public static class HexDirectionExtensions {
     public static HexDirection Opposite (this HexDirection direction) { 
         return (int)direction < 3 ? (direction + 3) : (direction - 3); 
     } 
+    
+    /// <summary>
+    /// 获取指定方向的前一个方向(循环，即如果是第一个则返回最后一个)
+    /// </summary>
+    /// <param name="direction"></param>
+    /// <returns></returns>
+    public static HexDirection Previous (this HexDirection direction) {
+        return direction == HexDirection.NE ? HexDirection.NW : (direction - 1);
+    }
+    
+    /// <summary>
+    /// 获取指定方向的后一个方向(循环，即如果是最后一个则返回第一个)
+    /// </summary>
+    /// <param name="direction"></param>
+    /// <returns></returns>
+    public static HexDirection Next (this HexDirection direction) {
+        return direction == HexDirection.NW ? HexDirection.NE : (direction + 1);
+    }
 } 
 /// <summary>
 /// 六边形网格单元，里面定义了六边形单元持有的属性
