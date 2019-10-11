@@ -42,6 +42,9 @@ public class HexMetrics
     public static Vector3 GetSecondSolidCorner (HexDirection direction) {
         return corners[((int)direction + 1)%6] * solidFactor;
     }
-
-    
+    //获取三角形临边的桥（center与v1、v2的交点形成的矢量）
+    public static Vector3 GetBridge (HexDirection direction) {
+        return (corners[(int)direction] + corners[((int)direction + 1)%6]) *
+                blendFactor;
+    }
 }

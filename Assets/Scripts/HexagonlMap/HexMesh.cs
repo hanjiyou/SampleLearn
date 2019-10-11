@@ -54,19 +54,27 @@ public class HexMesh : MonoBehaviour
         AddTriangle(center, v1, v2);
         AddTriangleColor(cell.color);
     //梯形混色区域
-        Vector3 v3 = center + HexMetrics.GetFirstCorner(direction);
-        Vector3 v4 = center + HexMetrics.GetSecondCorner(direction);
- 
+        Vector3 bridge = HexMetrics.GetBridge(direction);
+        Vector3 v3 = v1 + bridge;
+        Vector3 v4 = v2 + bridge;
         AddQuad(v1, v2, v3, v4);
- 
         HexCell prevNeighbor = cell.GetNeighbor(direction.Previous()) ?? cell;
         HexCell neighbor = cell.GetNeighbor(direction) ?? cell;
         HexCell nextNeighbor = cell.GetNeighbor(direction.Next()) ?? cell;
- 
-        AddQuadColor(
-            cell.color,
+        AddQuadColor(cell.color,
+            (cell.color + prevNeighbor.color + neighbor.color) *0.5f);
+    //补上被剔除的两个三角形(第一个三角形三个顶点的颜色分别是v1本色，2三个六边形混色，3桥色)
+        Color bridgeColor = (cell.color + neighbor.color) * 0.5f;
+//        AddQuadColor(cell.color, bridgeColor);
+        AddTriangle(v1, center + HexMetrics.GetFirstCorner(direction), v3);
+        AddExcludedTriangleColor(
             cell.color,
             (cell.color + prevNeighbor.color + neighbor.color) / 3f,
+            bridgeColor);
+        AddTriangle(v2, v4, center + HexMetrics.GetSecondCorner(direction));
+        AddExcludedTriangleColor(
+            cell.color,
+            bridgeColor,
             (cell.color + neighbor.color + nextNeighbor.color) / 3f
         );
     }
@@ -95,6 +103,15 @@ public class HexMesh : MonoBehaviour
         colors.Add(c);
     }
     /// <summary>
+    /// 为被剔除的三角形着色
+    /// </summary>
+    void AddExcludedTriangleColor(Color c1,Color c2,Color c3)
+    {
+        colors.Add(c1);
+        colors.Add(c2);
+        colors.Add(c3);
+    }
+    /// <summary>
     /// 添加四边梯形(对mesh的三角集合来说 一个四边形=顺时针顺序添加两个三角形 2个顶点重复即4个顶点)
     /// </summary>
     /// <param name="v1"></param>
@@ -115,10 +132,10 @@ public class HexMesh : MonoBehaviour
         triangles.Add(vertexIndex + 3);
     }
  
-    void AddQuadColor (Color c1, Color c2, Color c3, Color c4) {
+    void AddQuadColor (Color c1, Color c2) {
+        colors.Add(c1);
         colors.Add(c1);
         colors.Add(c2);
-        colors.Add(c3);
-        colors.Add(c4);
+        colors.Add(c2);
     }
 }
