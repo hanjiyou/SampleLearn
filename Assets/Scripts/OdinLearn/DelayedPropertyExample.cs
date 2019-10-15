@@ -13,7 +13,7 @@ public class DelayedPropertyExample : MonoBehaviour
 
    void OnValueChanged()
    {
-      Debug.Log("OnvalueChanged回调");
+      Loger.Log("OnvalueChanged回调");
    }
    
    [DelayedProperty]
@@ -23,6 +23,6 @@ public class DelayedPropertyExample : MonoBehaviour
 
    void OnValueChanged2()
    {
-      Debug.Log("OnvalueChanged222回调");
+      Loger.Log("OnvalueChanged222回调");
    }
 }

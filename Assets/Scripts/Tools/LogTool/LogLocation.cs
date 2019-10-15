@@ -28,13 +28,18 @@ public class LogLocation
         m_ActiveTextInfo = m_ConsoleWindowType.GetField("m_ActiveText", BindingFlags.Instance | BindingFlags.NonPublic);
         m_ConsoleWindowFileInfo = m_ConsoleWindowType.GetField("ms_ConsoleWindow", BindingFlags.Static | BindingFlags.NonPublic);
     }
-
+    /// <summary>
+    /// 双击log系统自动调用该方法，并传入行号。
+    /// </summary>
+    /// <param name="instanceID">输出log的脚本的id</param>
+    /// <param name="line">log对应的脚本行号</param>
+    /// <returns>false表示不做处理，即执行系统默认操作。true表示执行自定义的操作</returns>
     [UnityEditor.Callbacks.OnOpenAssetAttribute(-1)]
     private static bool OnOpenAsset(int instanceID, int line)
     {
         if (instanceID == LogLocation.GetInstacne().m_DebugerFileInstanceId)
         {
-            return LogLocation.GetInstacne().FindCode();
+            return GetInstacne().FindCode(); 
         }
         return false;
     }
@@ -44,6 +49,10 @@ public class LogLocation
         var windowInstance = m_ConsoleWindowFileInfo.GetValue(null);
         var activeText = m_ActiveTextInfo.GetValue(windowInstance);
         string[] contentStrings = activeText.ToString().Split('\n');
+        if (contentStrings.Length <= 1)
+        {
+            return false;
+        }
         List<string> filePath = new List<string>();
         for (int index = 0; index < contentStrings.Length; index++)
         {

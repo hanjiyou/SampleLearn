@@ -19,20 +19,20 @@ public class GUIColorExample : MonoBehaviour
     [GUIColor(0, 1, 0)]
     private void Apply()
     {
-        Debug.Log("应用 color0="+color0);
+        Loger.Log("应用 color0="+color0);
     }
 
     [ButtonGroup]
     [GUIColor(1, 0.6f, 0.4f)]
     private void Cancel()
     {
-        Debug.Log("取消");
+        Loger.Log("取消");
     }
     [ButtonGroup]
     [GUIColor(1, 0.6f, 0.4f)]
     private void Cancel2()
     {
-        Debug.Log("取消2");
+        Loger.Log("取消2");
     }
 //按钮动态颜色
     //方法1
@@ -47,7 +47,7 @@ public class GUIColorExample : MonoBehaviour
     /// <returns></returns>
     private static Color GetButtonColor()
     {
-//        Debug.Log("GetButtonColor");
+//        Loger.Log("GetButtonColor");
 
         Sirenix.Utilities.Editor.GUIHelper.RequestRepaint();
         return Color.HSVToRGB(Mathf.Cos((float)UnityEditor.EditorApplication.timeSinceStartup + 1f) * 0.225f + 0.325f, 1, 1);

@@ -79,7 +79,7 @@ public class HexGrid : MonoBehaviour
     {
         position = transform.InverseTransformPoint(position);//将世界坐标转换为本地坐标        
         HexCoordinates coordinates = HexCoordinates.FromPosition(position);        
-        Debug.Log("touched at " + coordinates.ToString());
+        Loger.Log("touched at " + coordinates.ToString());
         int index = coordinates.X + coordinates.Z * width + coordinates.Z / 2;
         HexCell cell = cells[index];
         cell.color = color;
