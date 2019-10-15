@@ -37,7 +37,7 @@ public class LogLocation
     [UnityEditor.Callbacks.OnOpenAssetAttribute(-1)]
     private static bool OnOpenAsset(int instanceID, int line)
     {
-        if (instanceID == LogLocation.GetInstacne().m_DebugerFileInstanceId)
+        if (instanceID == LogLocation.GetInstacne().m_DebugerFileInstanceId)//打开资产的id如果是Loger（①通过log打开，②双击打开文件）
         {
             return GetInstacne().FindCode(); 
         }
@@ -49,7 +49,7 @@ public class LogLocation
         var windowInstance = m_ConsoleWindowFileInfo.GetValue(null);
         var activeText = m_ActiveTextInfo.GetValue(windowInstance);
         string[] contentStrings = activeText.ToString().Split('\n');
-        if (contentStrings.Length <= 1)
+        if (contentStrings.Length <= 1)//屏蔽双击打开log文件时的定位
         {
             return false;
         }
