@@ -6,3 +6,4 @@ Logs/
 [t/T]emp
 .idea/
 Assets/Plugins/Editor/JetBrains*
+*.sln.*
