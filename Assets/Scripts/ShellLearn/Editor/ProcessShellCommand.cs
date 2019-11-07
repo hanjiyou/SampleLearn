@@ -1,13 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using UnityEditor;
-using UnityEngine;
-
-public class ProcessShellCommand : MonoBehaviour
+public  class ProcessShellCommand
 {
-    private static string GitRootPath = "D:\\WorkSoftwareInstall\\Git\\bin";
-    [MenuItem("MyTools/GitUpdate")]
+    private static string QQRootPath = "D:\\PlaySoftwareInstall\\QQ\\Bin\\";
+    [MenuItem("MyTools/LaunchQQ")]
+    public static void LaunchApplication()
+    {
+        ProcessCommand(QQRootPath+"QQ","");
+    }
+    
+    [MenuItem("MyTools/Git/Status")]
+    public static void GitStatus()
+    {
+        ProcessCommand("git","status");
+    }
+    [MenuItem("MyTools/Git/Add")]
+    public static void GitAdd()
+    {
+        ProcessCommand("git","add *");
+    }
+//    private static string GitRootPath = "D:\\WorkSoftwareInstall\\Git\\bin";
+    [MenuItem("MyTools/Git/Push")]
+    public static void GitPush()
+    {
+        ProcessCommand("git","push");
+    }
+
+    [MenuItem("MyTools/Git/Pull")]
     public static void GitUpdate()
     {
         ProcessCommand("git","pull");
@@ -41,15 +60,12 @@ public class ProcessShellCommand : MonoBehaviour
         }
         Process p = Process.Start(startInfo);
         {
-            Loger.Log(p.StandardOutput.ReadToEnd());
-            Loger.Log(p.StandardError.ReadToEnd());
+            Loger.Log("output="+p.StandardOutput.ReadToEnd());
+            Loger.Log("errorLog="+p.StandardError.ReadToEnd());
         }
         p.WaitForExit();
         p.Close();
     }
 
-    private static void LaunchApplication(string path)
-    {
-        
-    }
+ 
 }
