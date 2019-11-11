@@ -30,7 +30,7 @@ public class TestListSort : MonoBehaviour
         _studentSort1s.Add(new StudentSort1(){Name ="han4",Age=5,status = 3});
     }
     /// <summary>
-    /// 返回值为1 表示升序 -1表示降序 0表示不变
+    /// 返回值为1 表示交换 -1表示不交换 0表示没有前后关系
     /// </summary>
     /// <param name="s1"></param>
     /// <param name="s2"></param>
