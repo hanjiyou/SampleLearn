@@ -11,9 +11,9 @@ public class TestRef : MonoBehaviour
     {
         GameObject goAsset = Resources.Load<GameObject>("HexagonlMap/Prefab/HexCellLabel");
         TestRefAssignment(ref _gameObject, goAsset);
-        Loger.Log("1111111_gameObject.name="+_gameObject.name);
+        LogTool.Log("1111111_gameObject.name="+_gameObject.name);
         TestRefSetNull(ref _gameObject);
-        Loger.Log("22222_gameObject.name="+_gameObject.name);
+        LogTool.Log("22222_gameObject.name="+_gameObject.name);
 
     }
 

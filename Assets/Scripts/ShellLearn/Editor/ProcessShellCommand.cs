@@ -60,8 +60,8 @@ public  class ProcessShellCommand
         }
         Process p = Process.Start(startInfo);
         {
-            Loger.Log("output="+p.StandardOutput.ReadToEnd());
-            Loger.Log("errorLog="+p.StandardError.ReadToEnd());
+            LogTool.Log("output="+p.StandardOutput.ReadToEnd());
+            LogTool.Log("errorLog="+p.StandardError.ReadToEnd());
         }
         p.WaitForExit();
         p.Close();

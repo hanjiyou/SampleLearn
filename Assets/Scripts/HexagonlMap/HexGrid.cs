@@ -19,7 +19,7 @@ public class HexGrid : MonoBehaviour
     public Color defaultColor = Color.white;
     public Color touchedColor = Color.magenta;
     void Awake () {
-        Loger.Log("hhh");
+        LogTool.Log("hhh");
         cells = new HexCell[height * width];
         gridCanvas = GetComponentInChildren<Canvas>();
         hexMesh = GetComponentInChildren<HexMesh>();
@@ -79,7 +79,7 @@ public class HexGrid : MonoBehaviour
     {
         position = transform.InverseTransformPoint(position);//将世界坐标转换为本地坐标        
         HexCoordinates coordinates = HexCoordinates.FromPosition(position);        
-        Loger.Log("touched at " + coordinates.ToString());
+        LogTool.Log("touched at " + coordinates.ToString());
         int index = coordinates.X + coordinates.Z * width + coordinates.Z / 2;
         HexCell cell = cells[index];
         cell.color = color;

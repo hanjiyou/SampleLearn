@@ -19,20 +19,20 @@ public class GUIColorExample : MonoBehaviour
     [GUIColor(0, 1, 0)]
     private void Apply()
     {
-        Loger.Log("应用 color0="+color0);
+        LogTool.Log("应用 color0="+color0);
     }
 
     [ButtonGroup]
     [GUIColor(1, 0.6f, 0.4f)]
     private void Cancel()
     {
-        Loger.Log("取消");
+        LogTool.Log("取消");
     }
     [ButtonGroup]
     [GUIColor(1, 0.6f, 0.4f)]
     private void Cancel2()
     {
-        Loger.Log("取消2");
+        LogTool.Log("取消2");
     }
 //按钮动态颜色
     //方法1

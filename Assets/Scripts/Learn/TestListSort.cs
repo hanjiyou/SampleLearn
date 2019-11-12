@@ -81,7 +81,7 @@ public class TestListSort : MonoBehaviour
     {
         for (int i = 0; i < list.Count; i++)
         {
-            Loger.Log($"第{i}个="+list[i].ToString());
+            LogTool.Log($"第{i}个="+list[i].ToString());
         }
     }
 }

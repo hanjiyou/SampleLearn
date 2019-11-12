@@ -15,7 +15,7 @@ public class ExecuteLuaDemo01 : MonoBehaviour
 //执行lua的3种方式
     //方法1 DoString 不建议
         Debug.Log("1111Helloworld");
-        Loger.Log("11111Helloworld");
+        LogTool.Log("11111Helloworld");
         _luaEnv=new LuaEnv();
         //直接执行lua代码(控制台会有前缀"LUA:")
         _luaEnv.DoString("print('hello World')");
@@ -34,7 +34,7 @@ public class ExecuteLuaDemo01 : MonoBehaviour
                                 "return {intVar=99}";
                 return System.Text.Encoding.UTF8.GetBytes(scirpt);
             }
-            Loger.Log($"filePath={filepath}");
+            LogTool.Log($"filePath={filepath}");
             return null;
         });
         _luaEnv.DoString("print('添加自定义loader的require',require ('myLoader').intVar)");

@@ -52,7 +52,7 @@ public class ColorPaletteExample : MonoBehaviour
     [Button("mybtn", ButtonSizes.Large)]
     void ExecuteBtn(string str)
     {
-        Loger.Log("hhh 执行按钮点击方法str="+str);
+        LogTool.Log("hhh 执行按钮点击方法str="+str);
     }
     
     [field:SerializeField]

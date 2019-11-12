@@ -92,7 +92,7 @@ private IEnumerable ServerEnum = new ValueDropdownList<int>()
         [Button(("还原"),ButtonSizes.Medium),GUIColor(0,1,1)]
         void OnChangeSpeedBtn()
         {
-            Loger.Log($"hhh timeScale={TimeScale}");
+            LogTool.Log($"hhh timeScale={TimeScale}");
             TimeScale = 1;
         }
 
@@ -107,10 +107,10 @@ private IEnumerable ServerEnum = new ValueDropdownList<int>()
             switch (Result)
             {
                 case ResultMenu.胜:
-                    Loger.Log("you win");
+                    LogTool.Log("you win");
                     break;
                 case ResultMenu.负:
-                    Loger.Log("you lost");
+                    LogTool.Log("you lost");
                     break;
             }
         }
@@ -122,14 +122,14 @@ private IEnumerable ServerEnum = new ValueDropdownList<int>()
         [Button("开启",ButtonSizes.Medium),GUIColor(0,1,0)]
         void OnStartBtn()
         {
-            Loger.Log("start btn");
+            LogTool.Log("start btn");
         }
         [FoldoutGroup("剧情测试")]
         [HorizontalGroup("剧情测试/horGroup",MarginRight = 0.1f)]
         [Button("关闭",ButtonSizes.Medium),GUIColor(0,1,0)]
         void OnCloseStoryBtn()
         {
-            Loger.Log("OnCloseStoryBtn");
+            LogTool.Log("OnCloseStoryBtn");
         }
         
          public  enum ResultMenu

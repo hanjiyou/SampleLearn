@@ -18,18 +18,18 @@ public class TestCoroutine : MonoBehaviour
     {
         if (_coroutine == null)
         {
-            Loger.Log("hhh _coroutine为空");
+            LogTool.Log("hhh _coroutine为空");
         }
         else
         {
-            Loger.Log("hhh _coroutine不");
+            LogTool.Log("hhh _coroutine不");
         }
     }
 
     IEnumerator TestCor1()
     {
-        Loger.Log("hhh TestCor1 111");
+        LogTool.Log("hhh TestCor1 111");
         yield return new WaitForSeconds(1);
-        Loger.Log("hhh TestCor1 2");
+        LogTool.Log("hhh TestCor1 2");
     }
 }

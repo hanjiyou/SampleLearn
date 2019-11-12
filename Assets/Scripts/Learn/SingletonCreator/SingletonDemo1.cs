@@ -6,10 +6,10 @@ public class SingletonDemo1 : ISingleton
 {
     private  SingletonDemo1()
     {
-        Loger.Log("单例demo 构造");
+        LogTool.Log("单例demo 构造");
     }
     public void OnSingletonInit()
     {
-        Loger.Log("单例demo singletonDemo1初始化");
+        LogTool.Log("单例demo singletonDemo1初始化");
     }
 }
