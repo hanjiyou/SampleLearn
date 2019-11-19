@@ -1,0 +1,46 @@
+print('Hello! This is LuaCallC#')
+--声明C#类别名
+GameObject=CS.UnityEngine.GameObject--为C#目标类设置别名
+LogTool=CS.LogTool
+XLuaManager=CS.XLuaManager
+--声明结束
+
+local newObj=GameObject()--调用构造函数
+newObj.name='myNewObj'--访问成员字段
+local newObj2=GameObject('myNewObj2')--访问重载方法
+LogTool.Log('newObj.Name=',newObj.name) --lua调用C#的静态输出方法和成员(注意 拼接字符串须遵守lua语法)
+newObjTf=newObj.transform
+newObj2.transform:SetParent(newObjTf) --lua调用成员方法 ':'(第一个参数需要传该对象，建议用冒号语法糖)
+
+--XLuaCSharp交互
+local xLuaManager=XLuaManager:GetInstance()
+--自定义学生类
+Student={id=0,name='',age=0}
+function Student:new(newTable,id,name,age)
+ newTable=newTable or {}
+ setmetatable(newTable,self)
+ self.__index=self
+ self.id=id or 0
+ self.name= name or ''
+ self.age=age or o
+ return newTable
+end
+function Student:toString()
+ content= 'id='..self.id..'name='..self.name..'age='..self.age
+ print('content=',content)
+ LogTool.Log(content)
+end
+
+student1=Student:new(nil,3618,'han',12)--子实例
+student1:toString()
+student2=student1:new(nil,3333,'han222',22)--孙实例
+--调用重载函数
+xLuaManager:TestFunc(student2.name)
+xLuaManager:TestFunc(student2.age)
+p1={x=1,y='luaYYYYYY'}
+p2=1
+p1,p2,p3= xLuaManager:ComplexFunc(p1,p2)
+--logStr='p2='..p2..',p3='..p3',p1='.. p1
+print(p1)
+print(p2)
+print(p3)

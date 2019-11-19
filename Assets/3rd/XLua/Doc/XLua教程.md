@@ -10,6 +10,7 @@
         luaenv.DoString("print('hello world')")
 
     完整代码见XLua\Tutorial\LoadLuaScript\ByString目录
+
     > 但这种方式并不建议，更建议下面介绍这种方法。
 
 2. 加载Lua文件
@@ -93,7 +94,7 @@
         delegate的使用就更简单了，直接像个函数那样用就可以了。
 
     2. 映射到LuaFunction
-        
+       
         这种方式的优缺点刚好和第一种相反。
         使用也简单，LuaFunction上有个变参的Call函数，可以传任意类型，任意个数的参数，返回值是object的数组，对应于lua的多返回值。
 
@@ -260,7 +261,7 @@ C#下B结构体（class也支持）定义如下：
     {
         public int a;
     }
-
+    
     public struct B
     {
         public A b;
