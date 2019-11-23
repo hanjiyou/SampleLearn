@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -145,8 +145,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 567af7ecaa3d5994c97448357665421b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
+  script: "\r\n        function demo()\r\n            --new C#\u5BF9\u8C61\r\n            local
+    newGameObj = CS.UnityEngine.GameObject()\r\n            local newGameObj2 = CS.UnityEngine.GameObject('helloworld')\r\n
+    \           print(newGameObj, newGameObj2)\r\n        \r\n            --\u8BBF\u95EE\u9759\u6001\u5C5E\u6027\uFF0C\u65B9\u6CD5\r\n
+    \           local GameObject = CS.UnityEngine.GameObject\r\n            print('UnityEngine.Time.deltaTime:',
+    CS.UnityEngine.Time.deltaTime) --\u8BFB\u9759\u6001\u5C5E\u6027\r\n            CS.UnityEngine.Time.timeScale
+    = 0.5 --\u5199\u9759\u6001\u5C5E\u6027\r\n            print('helloworld', GameObject.Find('helloworld'))
+    --\u9759\u6001\u65B9\u6CD5\u8C03\u7528\r\n\r\n            --\u8BBF\u95EE\u6210\u5458\u5C5E\u6027\uFF0C\u65B9\u6CD5\r\n
+    \           local DerivedClass = CS.Tutorial.DerivedClass\r\n            local
+    testobj = DerivedClass()\r\n            testobj.DMF = 1024--\u8BBE\u7F6E\u6210\u5458\u5C5E\u6027\r\n
+    \           print(testobj.DMF)--\u8BFB\u53D6\u6210\u5458\u5C5E\u6027\r\n            testobj:DMFunc()--\u6210\u5458\u65B9\u6CD5\r\n\r\n
+    \           --\u57FA\u7C7B\u5C5E\u6027\uFF0C\u65B9\u6CD5\r\n            print(DerivedClass.BSF)--\u8BFB\u57FA\u7C7B\u9759\u6001\u5C5E\u6027\r\n
+    \           DerivedClass.BSF = 2048--\u5199\u57FA\u7C7B\u9759\u6001\u5C5E\u6027\r\n
+    \           DerivedClass.BSFunc();--\u57FA\u7C7B\u9759\u6001\u65B9\u6CD5\r\n            print(testobj.BMF)--\u8BFB\u57FA\u7C7B\u6210\u5458\u5C5E\u6027\r\n
+    \           testobj.BMF = 4096--\u5199\u57FA\u7C7B\u6210\u5458\u5C5E\u6027\r\n
+    \           testobj:BMFunc()--\u57FA\u7C7B\u65B9\u6CD5\u8C03\u7528\r\n\r\n            --\u590D\u6742\u65B9\u6CD5\u8C03\u7528\r\n
+    \           local ret, p2, p3, csfunc = testobj:ComplexFunc({x=3, y = 'john'},
+    100, function()\r\n               print('i am lua callback')\r\n            end)\r\n
+    \           print('ComplexFunc ret:', ret, p2, p3, csfunc)\r\n            csfunc()\r\n\r\n
+    \           --\u91CD\u8F7D\u65B9\u6CD5\u8C03\u7528\r\n            testobj:TestFunc(100)\r\n
+    \           testobj:TestFunc('hello')\r\n\r\n            --\u64CD\u4F5C\u7B26\r\n
+    \           local testobj2 = DerivedClass()\r\n            testobj2.DMF = 2048\r\n
+    \           print('(testobj + testobj2).DMF = ', (testobj + testobj2).DMF)\r\n\r\n
+    \           --\u9ED8\u8BA4\u503C\r\n            testobj:DefaultValueFunc(1)\r\n
+    \           testobj:DefaultValueFunc(3, 'hello', 'john')\r\n\r\n            --\u53EF\u53D8\u53C2\u6570\r\n
+    \           testobj:VariableParamsFunc(5, 'hello', 'john')\r\n\r\n            --Extension
+    methods\r\n            print(testobj:GetSomeData()) \r\n            print(testobj:GetSomeBaseData())
+    --\u8BBF\u95EE\u57FA\u7C7B\u7684Extension methods\r\n            testobj:GenericMethodOfString()
+    \ --\u901A\u8FC7Extension methods\u5B9E\u73B0\u8BBF\u95EE\u6CDB\u5316\u65B9\u6CD5\r\n\r\n
+    \           --\u679A\u4E3E\u7C7B\u578B\r\n            local e = testobj:EnumTestFunc(CS.Tutorial.TestEnum.E1)\r\n
+    \           print(e, e == CS.Tutorial.TestEnum.E2)\r\n            print(CS.Tutorial.TestEnum.__CastFrom(1),
+    CS.Tutorial.TestEnum.__CastFrom('E1'))\r\n            print(CS.Tutorial.DerivedClass.TestEnumInner.E3)\r\n
+    \           assert(CS.Tutorial.BaseClass.TestEnumInner == nil)\r\n\r\n            --Delegate\r\n
+    \           testobj.TestDelegate('hello') --\u76F4\u63A5\u8C03\u7528\r\n            local
+    function lua_delegate(str)\r\n                print('TestDelegate in lua:', str)\r\n
+    \           end\r\n            testobj.TestDelegate = lua_delegate + testobj.TestDelegate
+    --combine\uFF0C\u8FD9\u91CC\u6F14\u793A\u7684\u662FC#delegate\u4F5C\u4E3A\u53F3\u503C\uFF0C\u5DE6\u503C\u4E5F\u652F\u6301\r\n
+    \           testobj.TestDelegate('hello')\r\n            testobj.TestDelegate
+    = testobj.TestDelegate - lua_delegate --remove\r\n            testobj.TestDelegate('hello')\r\n\r\n
+    \           --\u4E8B\u4EF6\r\n            local function lua_event_callback1()
+    print('lua_event_callback1') end\r\n            local function lua_event_callback2()
+    print('lua_event_callback2') end\r\n            testobj:TestEvent('+', lua_event_callback1)\r\n
+    \           testobj:CallEvent()\r\n            testobj:TestEvent('+', lua_event_callback2)\r\n
+    \           testobj:CallEvent()\r\n            testobj:TestEvent('-', lua_event_callback1)\r\n
+    \           testobj:CallEvent()\r\n            testobj:TestEvent('-', lua_event_callback2)\r\n\r\n
+    \           --64\u4F4D\u652F\u6301\r\n            local l = testobj:TestLong(11)\r\n
+    \           print(type(l), l, l + 100, 10000 + l)\r\n\r\n            --typeof\r\n
+    \           newGameObj:AddComponent(typeof(CS.UnityEngine.ParticleSystem))\r\n\r\n
+    \           --cast\r\n            local calc = testobj:GetCalc()\r\n            print('assess
+    instance of InnerCalc via reflection', calc:add(1, 2))\r\n            assert(calc.id
+    == 100)\r\n            cast(calc, typeof(CS.Tutorial.ICalc))\r\n            print('cast
+    to interface ICalc', calc:add(1, 2))\r\n            assert(calc.id == nil)\r\n
+    \      end\r\n\r\n       demo()\r\n\r\n       --\u534F\u7A0B\u4E0B\u4F7F\u7528\r\n
+    \      local co = coroutine.create(function()\r\n           print('------------------------------------------------------')\r\n
+    \          demo()\r\n       end)\r\n       assert(coroutine.resume(co))\r\n    "
 --- !u!81 &1583020651
 AudioListener:
   m_ObjectHideFlags: 0

@@ -13,12 +13,21 @@ public static class LogTool
         Debug.Log(content+obj);
     }
 
-    public static void LogWarring(string content)
+    public static void LogWarning(string content)
     {
-        Debug.Log(content);
+        Debug.LogWarning(content);
     }
-    public static void LogWarring(string content,System.Object obj)
+    public static void LogWarning(string content,System.Object obj)
     {
-        Debug.Log(content+obj);
+        Debug.LogWarning(content+obj);
+    }
+
+    public static void LogError(string content)
+    {
+        Debug.LogError(content);
+    }
+    public static void LogError(string content,System.Object obj)
+    {
+        Debug.LogError(content+obj);
     }
 }
