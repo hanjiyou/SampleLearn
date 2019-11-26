@@ -14,7 +14,7 @@ public class LogLocation
         }
         return m_Instance;
     }
-    private const string DEBUGERFILEPATH = "Assets/Scripts/Tools/LogTool/LogTool.cs";//替换成你自己的封装类地址
+    private const string DEBUGERFILEPATH = "Assets/Scripts/Tools/LogTool.cs";//替换成你自己的封装类地址
     private int m_DebugerFileInstanceId;
     private Type m_ConsoleWindowType = null;
     private FieldInfo m_ActiveTextInfo;

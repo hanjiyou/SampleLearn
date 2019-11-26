@@ -4,7 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-public class AssetDataTool
+public class AssetDataCreateTool
 {
     private static string DataRootPath = "Assets/Resources/GameData/";
     [MenuItem("MyTools/GameData/GenerateSystemConfig")]

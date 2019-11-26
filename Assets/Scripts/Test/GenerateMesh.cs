@@ -24,7 +24,7 @@ public class GenerateMesh : MonoBehaviour
     {
         WaitForSeconds wait=new WaitForSeconds(0.05f);
         vertices=new Vector3[(xSize+1)*(ySize+1)];
-        yield return wait;
+        yield return wait; 
         GetComponent<MeshFilter>().mesh = mesh = new Mesh();
         mesh.name = "Procedural Grid";
         for (int i = 0, y = 0; y <= ySize; y++)

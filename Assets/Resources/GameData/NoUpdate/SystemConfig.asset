@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db5a6c3f67a97464ab7c4bcaccd65af9, type: 3}
   m_Name: SystemConfig
   m_EditorClassIdentifier: 
-  GameVersion: 1
-  LoadFromBundle: 1
-  LoginIp: 192
+  GameVersion: 
+  LoadFromBundle: 0
+  LoginIp: 
   Port: 0
   UserSdk: 0
   SdkType: 0
-  Debug: 1
-  Warning: 1
-  Error: 1
+  Debug: 0
+  Warning: 0
+  Error: 0
   LanguageType: 0
