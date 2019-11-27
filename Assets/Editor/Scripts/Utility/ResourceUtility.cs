@@ -5,8 +5,10 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
-
-public class FileUtility
+/// <summary>
+/// 资源文件工具
+/// </summary>
+public class ResourceUtility
 {
     public static string GetMD5(string filePath)
     {
