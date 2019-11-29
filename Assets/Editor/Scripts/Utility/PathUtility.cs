@@ -12,10 +12,10 @@ public class PathUtility
    public readonly static string StreamingAssetsPath = Application.streamingAssetsPath;
    
    public readonly static string ProjectBuildABPath = "D:/Windows/SampleLearn/AssetBundles";
-   public readonly static string AssetBundlePathName = "AssetBundles";
-   public readonly static string ResourcePathName="Resources";
-   public readonly static string VersionFileName = "version.txt";
-   
+   public const string AssetBundlePathName = "AssetBundles";
+   public const string ResourcePathName="Resources";
+   public const string VersionFileName = "version.txt";
+   public const string ABSuffix = ".ab";
    public static string GetTargetPlatformPath()
    {
 #if UNITY_EDITOR
