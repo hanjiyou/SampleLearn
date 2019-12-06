@@ -36,33 +36,15 @@ public class BundleEditor : Editor
         GetAssetBundleNames();
     }
     
-    [MenuItem("MyTools/BundleBuild/ClearAllABNames",false,13)]
+    [MenuItem("MyTools/BundleBuild/ClearAllABNames",false,12)]
     public static void ClearAllABNames()
     {
         string[] allABNames = AssetDatabase.GetAllAssetBundleNames();
-        for (int i = 0; i < allABNames.Length; i++)
+        for (int i = 0; i < allABNames.Length; i++)  
         {
             AssetDatabase.RemoveAssetBundleName(allABNames[i], true);
         }
     }
-
-    #endregion
-
-
-    [MenuItem("MyTools/BundleBuild/BuildWin",false,23)]
-    public static void BuildWin()
-    {
-        NameAllResource();
-        BuildBundle(BuildTarget.StandaloneWindows);
-    }
-
-    [MenuItem("MyTools/BundleBuild/GetManifestMd5",false,12)]
-    public static void GetManifestMd5()
-    {
-        string mainfestPath = "D:/Windows/MyAb/MyAb";
-        LogTool.Log("md5="+ResourceUtility.GetMD5(mainfestPath));
-    }
-    
 
     [MenuItem("MyTools/BundleBuild/ClearNullDir",false,13)]
     public static void ClearNullDir()
@@ -70,6 +52,23 @@ public class BundleEditor : Editor
         string path = @"D:\Windows\SampleLearn\a";
         RemoveNullDir(new DirectoryInfo(path));
     }
+    #endregion
+
+    #region 主方法
+
+    /// <summary>
+    /// 创建windows ab包。先为所有资源ab命名，再build ab包
+    /// ab输出路径为:Assets父路径/Build/platformFolder
+    /// </summary>
+    [MenuItem("MyTools/BundleBuild/BuildWin",false,30)]
+    public static void BuildWin()
+    {
+        NameAllResource();
+        BuildBundle(BuildTarget.StandaloneWindows);
+    }
+
+    #endregion
+
     #region 内部功能方法
 
     /// <summary>
@@ -79,7 +78,6 @@ public class BundleEditor : Editor
     {
         ClearAllABNames();
         string resPath = PathUtility.CombinePath(PathUtility.AssetDataPath, PathUtility.ResourcePathName);
-        string[] dirs= Directory.GetDirectories(resPath);
         var files = Directory.GetFiles(resPath, ".", SearchOption.AllDirectories);
         for (int i = 0; i < files.Length; i++)
         {
@@ -92,8 +90,8 @@ public class BundleEditor : Editor
 //            if(fileResPathWithFileName.Contains(""))
             fileResPath = fileResPathWithFileName.ToLower()
                 .Substring(0, fileResPathWithFileName.LastIndexOf("."));
+            //修改资源的ab名，需要通过AssetImporter,而AssetImporter必须指定从Assets开始的路径（从盘符开始的绝对路径都不行）
             AssetImporter assetImporter=AssetImporter.GetAtPath("Assets/Resources/"+fileResPathWithFileName);
-            Debug.Log($"{i}={fileResPath}");
             assetImporter.assetBundleName = fileResPath+PathUtility.ABSuffix;
         }
     }
@@ -102,19 +100,25 @@ public class BundleEditor : Editor
     {
         GetCommandLineArgs();
         
-        string rootPath = PathUtility.ProjectBuildABPath;
-        if (!Directory.Exists(rootPath))
+        string bundleFolderRootPath =PathUtility.CombinePath(PathUtility.ProjectBuildABPath,PathUtility.GetTargetPlatformPath(buildTarget));
+        string manifestFilePath = PathUtility.CombinePath(bundleFolderRootPath, PathUtility.GetTargetPlatformPath(buildTarget));
+        if (!Directory.Exists(bundleFolderRootPath))
         {
-            Directory.CreateDirectory(rootPath);
+            Directory.CreateDirectory(bundleFolderRootPath);
         }
-        string oldMd5 = ResourceUtility.GetMD5(PathUtility.CombinePath(rootPath,PathUtility.AssetBundlePathName));
-        BuildPipeline.BuildAssetBundles(rootPath, BuildAssetBundleOptions.ChunkBasedCompression, buildTarget);
-        string newMd5=ResourceUtility.GetMD5(PathUtility.CombinePath(rootPath,PathUtility.AssetBundlePathName));
+
+        string oldMd5 = string.Empty;
+        if (File.Exists(manifestFilePath))
+        {
+            oldMd5 = ResourceUtility.GetMD5(manifestFilePath);
+        }
+        BuildPipeline.BuildAssetBundles(bundleFolderRootPath, BuildAssetBundleOptions.ChunkBasedCompression, buildTarget);
+        string newMd5=ResourceUtility.GetMD5(manifestFilePath);
         if (oldMd5 != newMd5)
         {
-            RemoveObsoleteBundle(rootPath);
-            RemoveNullDir(new DirectoryInfo(rootPath));
-            CreateVersionFile(rootPath);
+            RemoveObsoleteBundle(bundleFolderRootPath);
+            RemoveNullDir(new DirectoryInfo(bundleFolderRootPath));
+            CreateVersionFile(bundleFolderRootPath);
         }
         LogTool.Log("BuildBundle Complete");
     }

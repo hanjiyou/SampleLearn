@@ -11,7 +11,7 @@ public class PathUtility
    public readonly static string AssetDataPath = Application.dataPath;
    public readonly static string StreamingAssetsPath = Application.streamingAssetsPath;
    
-   public readonly static string ProjectBuildABPath = "D:/Windows/SampleLearn/AssetBundles";
+   public readonly static string ProjectBuildABPath =AssetDataPath.Substring(0,AssetDataPath.LastIndexOf('/'))+"/Build/AssetBundles";
    public const string AssetBundlePathName = "AssetBundles";
    public const string ResourcePathName="Resources";
    public const string VersionFileName = "version.txt";
@@ -52,7 +52,7 @@ public class PathUtility
    /// </summary>
    /// <param name="buildTarget"></param>
    /// <returns></returns>
-   private static string GetTargetPlatformPath(BuildTarget buildTarget)
+   public static string GetTargetPlatformPath(BuildTarget buildTarget)
    {
        string platformPath = string.Empty;
        switch (buildTarget)
