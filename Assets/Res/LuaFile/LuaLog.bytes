@@ -1,0 +1,4 @@
+local tempPrint=print
+function print(...)
+    tempPrint(...,"\n <filePath>", debug.getinfo(2).short_src,"</filePath><line>", debug.getinfo(2).currentline,"</line>")
+end

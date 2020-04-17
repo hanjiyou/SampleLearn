@@ -1,20 +1,20 @@
 print('Hello! This is LuaCallC#')
---ÉùÃ÷C#Àà±ğÃû
-GameObject=CS.UnityEngine.GameObject--ÎªC#Ä¿±êÀàÉèÖÃ±ğÃû
+--å£°æ˜C#ç±»åˆ«å
+GameObject=CS.UnityEngine.GameObject--ä¸ºC#ç›®æ ‡ç±»è®¾ç½®åˆ«å
 LogTool=CS.LogTool
 XLuaManager=CS.XLuaManager
---ÉùÃ÷½áÊø
+--å£°æ˜ç»“æŸ
 
-local newObj=GameObject()--µ÷ÓÃ¹¹Ôìº¯Êı
-newObj.name='myNewObj'--·ÃÎÊ³ÉÔ±×Ö¶Î
-local newObj2=GameObject('myNewObj2')--·ÃÎÊÖØÔØ·½·¨
-LogTool.Log('newObj.Name=',newObj.name) --luaµ÷ÓÃC#µÄ¾²Ì¬Êä³ö·½·¨ºÍ³ÉÔ±(×¢Òâ Æ´½Ó×Ö·û´®Ğë×ñÊØluaÓï·¨)
+local newObj=GameObject()--è°ƒç”¨æ„é€ å‡½æ•°
+newObj.name='myNewObj'--è®¿é—®æˆå‘˜å­—æ®µ
+local newObj2=GameObject('myNewObj2')--è®¿é—®é‡è½½æ–¹æ³•
+LogTool.Log('newObj.Name=',newObj.name) --luaè°ƒç”¨C#çš„é™æ€è¾“å‡ºæ–¹æ³•å’Œæˆå‘˜(æ³¨æ„ æ‹¼æ¥å­—ç¬¦ä¸²é¡»éµå®ˆluaè¯­æ³•)
 newObjTf=newObj.transform
-newObj2.transform:SetParent(newObjTf) --luaµ÷ÓÃ³ÉÔ±·½·¨ ':'(µÚÒ»¸ö²ÎÊıĞèÒª´«¸Ã¶ÔÏó£¬½¨ÒéÓÃÃ°ºÅÓï·¨ÌÇ)
+newObj2.transform:SetParent(newObjTf) --luaè°ƒç”¨æˆå‘˜æ–¹æ³• ':'(ç¬¬ä¸€ä¸ªå‚æ•°éœ€è¦ä¼ è¯¥å¯¹è±¡ï¼Œå»ºè®®ç”¨å†’å·è¯­æ³•ç³–)
 
---XLuaCSharp½»»¥
+--XLuaCSharpäº¤äº’
 local xLuaManager=XLuaManager:GetInstance()
---×Ô¶¨ÒåÑ§ÉúÀà
+--è‡ªå®šä¹‰å­¦ç”Ÿç±»
 Student={id=0,name='',age=0}
 function Student:new(newTable,id,name,age)
  newTable=newTable or {}
@@ -31,10 +31,10 @@ function Student:toString()
  LogTool.Log(content)
 end
 
-student1=Student:new(nil,3618,'han',12)--×ÓÊµÀı
+student1=Student:new(nil,3618,'han',12)--å­å®ä¾‹
 student1:toString()
-student2=student1:new(nil,3333,'han222',22)--ËïÊµÀı
---µ÷ÓÃÖØÔØº¯Êı
+student2=student1:new(nil,3333,'han222',22)--å­™å®ä¾‹
+--è°ƒç”¨é‡è½½å‡½æ•°
 xLuaManager:TestFunc(student2.name)
 xLuaManager:TestFunc(student2.age)
 p1={x=1,y='luaYYYYYY'}

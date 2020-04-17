@@ -48,12 +48,13 @@ public class ZStringDemo1 : MonoBehaviour
 
     private void Update()
     {
+        int num = 5;
         Profiler.BeginSample("test1");
-//        text1.text = num.ToString();//拆装箱 会产生GC
-        for (int i = 0; i < 1000; i++)
-        {
-            string c = "str1" +"str2";//变量拼接 每次都会产生新对象 产生很多GC
-        }
+        text1.text = num.ToString();//拆装箱 会产生GC
+//        for (int i = 0; i < 1000; i++)
+//        {
+//            string c = "str1" +"str2";//变量拼接 每次都会产生新对象 产生很多GC
+//        }
         Profiler.EndSample();
         
         Profiler.BeginSample("test2");
@@ -61,17 +62,19 @@ public class ZStringDemo1 : MonoBehaviour
         //短周期字符串 直接使用
         using (zstring.Block())
         {
-            zstring zstr = "zstr1";
-            zstring zstr2 = "zstr2";
-            text2.text = zstr+zstr2;
+            zstring zstr = num.ToString("00");
+            text2.text = zstr;
+//            zstring zstr = "zstr1";
+//            zstring zstr2 = "zstr2";
+//            text2.text = zstr+zstr2;
         }
         //长周期字符串（如资源路径）
-        using (zstring.Block())
-        {
-            string a = "Assets/";
-            zstring b = a + "prefabs/" + "solider.prefab";
-//            a.path = b.Intern();
-        }
+//        using (zstring.Block())
+//        {
+//            string a = "Assets/";
+//            zstring b = a + "prefabs/" + "solider.prefab";
+////            a.path = b.Intern();
+//        }
         Profiler.EndSample();
     }
 

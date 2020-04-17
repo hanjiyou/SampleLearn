@@ -1,0 +1,10 @@
+print("hhh this is default")
+package.path ='D:/WorkSpace/SampleLearn/Assets/Res/LuaFile/FunctionTest/?.bytes;' ..package.path
+print("path=",package.path)
+--require "LuaFunctionTest"
+local a,b = pcall(function()require "LuaFunctionTest" end)
+print(a,b)
+--获取全局数据
+print("isDebugLua",IsDebugLua)
+print("ConstantTable['two']=",ConstantTable["two"])
+
