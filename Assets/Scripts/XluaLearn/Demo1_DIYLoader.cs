@@ -7,7 +7,7 @@ using XLua;
 public class Demo1_DIYLoader : MonoBehaviour
 {
     private Dictionary<string,int> toLuaTableDic=new Dictionary<string, int>();
-
+    private LuaFunction _luaFunction;
     private void Awake()
     {
         toLuaTableDic["one"] = 1;
@@ -25,7 +25,9 @@ public class Demo1_DIYLoader : MonoBehaviour
 //        LogTool.Log("hhh 再次require不会重复执行");
 
         //2.使用自定义loader
-        XLuaManager.GetInstance().DoLuaFile("helloWord");
+        XLuaManager.GetInstance().DoLuaFile("LuaEntrance");
+        _luaFunction = XLuaManager.GetInstance().GetGlobalTable().Get<LuaFunction>("GlobalFunction1");
+        long result= (long)_luaFunction.Call(1,2,"haha")[0];
     }
 
     void NewTable()
@@ -47,5 +49,10 @@ public class Demo1_DIYLoader : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnApplicationQuit()
+    {
+        XLuaManager.GetInstance().DisposeEnv();
     }
 }

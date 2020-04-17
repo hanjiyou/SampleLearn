@@ -61,6 +61,11 @@ public class XLuaManager
     {
         return _luaEnv.Global.Get<LuaFunction>(functionName);
     }
+
+    public void DisposeEnv()
+    {
+        _luaEnv?.Dispose();
+    }
     #endregion
 
     #region 内部方法

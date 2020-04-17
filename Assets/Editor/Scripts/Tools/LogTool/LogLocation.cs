@@ -45,7 +45,7 @@ public class LogLocation
     [UnityEditor.Callbacks.OnOpenAssetAttribute(0)]
     private static bool OnOpenAsset(int instanceID, int line)
     {
-        Debug.Log("hhh instanceid="+instanceID+"line="+line);
+//        Debug.Log("hhh instanceid="+instanceID+"line="+line);
         if (instanceID == LogLocation.GetInstacne().m_DebugerFileInstanceId)//打开资产的id如果是Loger（①通过log打开，②双击打开文件）
         {
             return GetInstacne().FindCode(); 
@@ -63,7 +63,6 @@ public class LogLocation
 
     public bool CheckIsLua()
     {
-        Debug.Log("hhh check is lua");
         var windowInstance = m_ConsoleWindowFileInfo.GetValue(null);
         string logText = m_ActiveTextInfo.GetValue(windowInstance).ToString();
         if (logText.Contains("LUA:") && logText.Contains("<filePath>") && logText.Contains("<line>"))
@@ -71,15 +70,15 @@ public class LogLocation
             Regex regex = new Regex(@"<filePath>.*<\/filePath>");
             Match match = regex.Match(logText);
             string filePath = match.Groups[0].Value.Trim();
-            int length = filePath.Length - 11 - 12;
-            filePath = filePath.Substring(11, length);
+            int length = filePath.Length - 10 - 11;
+            filePath = filePath.Substring(10, length);
             filePath = filePath.Replace(".", "/");
             Regex lineRegex = new Regex(@"<line>.*<\/line>");
             match = lineRegex.Match(logText);
             string luaLineString = match.Groups[0].Value;
             luaLineString.Trim();
-            length = luaLineString.Length - 7-8;
-            luaLineString = luaLineString.Substring(7, length);
+            length = luaLineString.Length - 6-7;
+            luaLineString = luaLineString.Substring(6, length);
             int luaLine = int.Parse(luaLineString.Trim());
 
             string path = @"Assets\Res\LuaFile\"+filePath+".bytes";

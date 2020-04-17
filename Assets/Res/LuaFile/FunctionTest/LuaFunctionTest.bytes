@@ -1,1 +1,6 @@
 print('hhh this is LuaFunctionTest')
+
+function GlobalFunction1(num1,num2,content)
+    print("globalFunction1,content=",content)
+    return num1+num2
+end

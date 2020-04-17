@@ -1,0 +1,10 @@
+local tempPrint=print
+function print(...)
+    local t={...}
+    --tempPrint(...)函数的不定长参数在与其他字符串拼接的时候 只能放在最后，否则就变成了只包含第一个参数
+   local debugInfo="\n <filePath>".. debug.getinfo(2).short_src.."</filePath><line>"..debug.getinfo(2).currentline.."</line>";
+    --table.insert(t,#t,debugInfo);
+    table.insert(t,debugInfo)--通过insert 将debugInfo插入到table最后
+    --tempPrint("\n <filePath>", debug.getinfo(2).short_src,"</filePath><line>", debug.getinfo(2).currentline,"</line>",table.unpack(t))--table.unpack(unpack) 将表中数据 挨个返回
+    tempPrint(table.unpack(t))
+end

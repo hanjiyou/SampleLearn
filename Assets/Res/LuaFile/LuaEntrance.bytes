@@ -1,0 +1,13 @@
+require("/Tools/LuaLogTool")
+
+LogTool=CS.LogTool;
+--LogTool.Log("log tool")
+
+print("hhh this is helloworld")
+--package.path ='D:/WorkSpace/SampleLearn/Assets/Res/LuaFile/FunctionTest/?.bytes;' ..package.path --这个东西 没起作用 被loader顶替了
+--print("path=",package.path)
+require "FunctionTest/LuaFunctionTest"
+
+--获取全局数据
+print("isDebugLua",IsDebugLua)
+print("ConstantTable['two']=",ConstantTable["two"])
