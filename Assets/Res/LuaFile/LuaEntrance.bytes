@@ -8,6 +8,6 @@ print("hhh this is helloworld")
 --print("path=",package.path)
 require "FunctionTest/LuaFunctionTest"
 
---获取全局数据
+--获取全局数据 C#设置到Global表中的数据 可以在lua处直接获取
 print("isDebugLua",IsDebugLua)
 print("ConstantTable['two']=",ConstantTable["two"])

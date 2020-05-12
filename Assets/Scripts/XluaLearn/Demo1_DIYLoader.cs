@@ -28,6 +28,8 @@ public class Demo1_DIYLoader : MonoBehaviour
         XLuaManager.GetInstance().DoLuaFile("LuaEntrance");
         _luaFunction = XLuaManager.GetInstance().GetGlobalTable().Get<LuaFunction>("GlobalFunction1");
         long result= (long)_luaFunction.Call(1,2,"haha")[0];
+        LogTool.Log("lua global function result="+result);
+
     }
 
     void NewTable()
@@ -45,6 +47,7 @@ public class Demo1_DIYLoader : MonoBehaviour
         NewTable();
         XLuaManager.GetInstance().GetGlobalTable().Set("IsDebugLua",true);
     }
+    
     // Update is called once per frame
     void Update()
     {

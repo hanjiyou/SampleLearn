@@ -99,12 +99,12 @@ public class BundleEditor : Editor
     private static void BuildBundle(BuildTarget buildTarget)
     {
         GetCommandLineArgs();
-        
-        string bundleFolderRootPath =PathUtility.CombinePath(PathUtility.ProjectBuildABPath,PathUtility.GetTargetPlatformPath(buildTarget));
-        string manifestFilePath = PathUtility.CombinePath(bundleFolderRootPath, PathUtility.GetTargetPlatformPath(buildTarget));
-        if (!Directory.Exists(bundleFolderRootPath))
+        string buildAbRootPath = string.Format("{0}/{1}/{2}", PathUtility.ProjectBuildABPath,
+            PathUtility.GetTargetPlatformPath(buildTarget), PathUtility.AssetBundlePathName);
+        string manifestFilePath = PathUtility.CombinePath(buildAbRootPath, PathUtility.AssetBundlePathName);
+        if (!Directory.Exists(buildAbRootPath))
         {
-            Directory.CreateDirectory(bundleFolderRootPath);
+            Directory.CreateDirectory(buildAbRootPath);
         }
 
         string oldMd5 = string.Empty;
@@ -112,13 +112,16 @@ public class BundleEditor : Editor
         {
             oldMd5 = ResourceUtility.GetMD5(manifestFilePath);
         }
-        BuildPipeline.BuildAssetBundles(bundleFolderRootPath, BuildAssetBundleOptions.ChunkBasedCompression, buildTarget);
+
+        BuildAssetBundleOptions buildAssetBundleOptions = BuildAssetBundleOptions.ChunkBasedCompression;//lz4压缩（一般都会有）
+        buildAssetBundleOptions = buildAssetBundleOptions | BuildAssetBundleOptions.DisableWriteTypeTree;//关闭写入类型树
+        BuildPipeline.BuildAssetBundles(buildAbRootPath, buildAssetBundleOptions, buildTarget);
         string newMd5=ResourceUtility.GetMD5(manifestFilePath);
         if (oldMd5 != newMd5)
         {
-            RemoveObsoleteBundle(bundleFolderRootPath);
-            RemoveNullDir(new DirectoryInfo(bundleFolderRootPath));
-            CreateVersionFile(bundleFolderRootPath);
+//            RemoveObsoleteBundle(buildAbRootPath);
+//            RemoveNullDir(new DirectoryInfo(buildAbRootPath));
+            CreateVersionFile();
         }
         LogTool.Log("BuildBundle Complete");
     }
@@ -207,9 +210,11 @@ public class BundleEditor : Editor
     }
 
     
-//    [MenuItem("MyTools/BundleBuild/CreateVersionFile")]
-    public static void CreateVersionFile(string buildABRootPath)
+    [MenuItem("MyTools/BundleBuild/CreateVersionFile")]
+    public static void CreateVersionFile()
     {
+        string buildABRootPath = string.Format("{0}/{1}/{2}", PathUtility.ProjectBuildABPath,
+            PathUtility.GetTargetPlatformPath(BuildTarget.StandaloneWindows), PathUtility.AssetBundlePathName);
         string manifestPathWithName =PathUtility.CombinePath(buildABRootPath,PathUtility.AssetBundlePathName);
         var loadedAB = AssetBundle.GetAllLoadedAssetBundles().ToArray();
         if (loadedAB.Length > 0)
@@ -228,12 +233,12 @@ public class BundleEditor : Editor
         manifestAssetBundle.Unload(true);//如果不卸载 会报错：IO异常，sharing violation非法共享
 
         Dictionary<string, string> fileHashList = new Dictionary<string, string>();
-        string versionFilePath=PathUtility.CombinePath(PathUtility.ProjectBuildABPath, PathUtility.VersionFileName);
+        string versionFilePath=PathUtility.CombinePath(buildABRootPath, PathUtility.VersionFileName);
         string md5 = ResourceUtility.GetMD5(manifestPathWithName);
         fileHashList[PathUtility.AssetBundlePathName] = ResourceUtility.GetMD5(manifestPathWithName);
         foreach (var asset in allABPath)
         {
-            fileHashList[asset] = ResourceUtility.GetMD5(PathUtility.CombinePath(PathUtility.ProjectBuildABPath,asset));
+            fileHashList[asset] = ResourceUtility.GetMD5(PathUtility.CombinePath(buildABRootPath,asset));
         }
         
         int version = 0;
@@ -254,7 +259,7 @@ public class BundleEditor : Editor
             localVersionFile.version = version+1;
             foreach (var dep in fileHashList)
             {
-                var fileInfo = new FileInfo(string.Format("{0}/{1}", PathUtility.ProjectBuildABPath, dep.Key));
+                var fileInfo = new FileInfo(string.Format("{0}/{1}", buildABRootPath, dep.Key));
                 localVersionFile.AddBundleVerison(dep.Key, dep.Value, (ulong)fileInfo.Length);
             }
             

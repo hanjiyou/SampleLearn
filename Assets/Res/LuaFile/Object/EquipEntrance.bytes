@@ -1,0 +1,28 @@
+require("Tools/LuaLogTool")
+
+function awake()
+    print("awake")
+end
+function start()
+    print("start")
+end
+
+function LogEquipInfo()
+    --print("equip0=",equip0.EquipId)
+    --print("equip0=",equip0.EquipName)
+    --print("equip0=",equip0.EquipColor)
+    --print("equip0=",equip0.EquipDamage)
+    --
+    --print("equip1=",equip1.EquipId)
+    --print("equip1=",equip1.EquipName)
+    --print("equip1=",equip1.EquipColor)
+    --print("equip1=",equip1.EquipDamage)
+    print("equipDatas=",equipDatas[0].EquipId)
+    for k,v in pairs(equipDatas) do
+        print(k,v.EquipName)
+    end
+
+end
+function ondestroy()
+    print("ondestroy")
+end 

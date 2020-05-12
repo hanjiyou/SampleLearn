@@ -1,0 +1,21 @@
+--元类 表示该类中的属性
+Equip={
+    EquipId=111,
+    EquipName="defaultName",
+    EquipColor=1,
+    EquipDamage=10
+}
+function Equip:new(o,id,name,color,damage)
+    o=o or {}
+    setmetatable(o,self)
+    self.__index=self
+    self.EquipId=id or 0
+    self.EquipName=name
+    self.EquipColor=color
+    self.EquipDamage=damage
+    return o
+end
+
+function Equip:printInfo()
+    print("printInfo: name="..self.EquipName.."color="..self.EquipColor.."damage="..damage)
+end

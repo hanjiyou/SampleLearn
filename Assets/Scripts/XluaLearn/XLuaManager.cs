@@ -14,6 +14,13 @@ public struct Param1
 public class XLuaManager
 {
     private LuaEnv _luaEnv;
+
+    public LuaEnv LuaEnv
+    {
+        get => _luaEnv;
+        private set => _luaEnv = value;
+    }
+
     private static XLuaManager Instance;
     public static XLuaManager GetInstance()
     {

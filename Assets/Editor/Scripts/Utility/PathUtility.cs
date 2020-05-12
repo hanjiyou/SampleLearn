@@ -11,8 +11,8 @@ public class PathUtility
    public readonly static string AssetDataPath = Application.dataPath;
    public readonly static string StreamingAssetsPath = Application.streamingAssetsPath;
    
-   public readonly static string ProjectBuildABPath =AssetDataPath.Substring(0,AssetDataPath.LastIndexOf('/'))+"/Build/AssetBundles";
-   public const string AssetBundlePathName = "AssetBundles";
+   public readonly static string ProjectBuildABPath =AssetDataPath.Substring(0,AssetDataPath.LastIndexOf('/'))+"/Build";
+   public const string AssetBundlePathName = "MyAssetBundles";
    public const string ResourcePathName="Resources";
    public const string VersionFileName = "version.txt";
    public const string ABSuffix = ".ab";
