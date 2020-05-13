@@ -24,11 +24,11 @@ public class PerlinGenerator : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            GenerateNoise();
+            GenerateNoiseTexture();
         }
     }
 
-    void GenerateNoise()
+    void GenerateNoiseTexture()
     {
         perlinTexture=new Texture2D(_perlinTexWidth,_perlinTexHeight);
         for (int i = 0; i < _perlinTexWidth; i++)
@@ -58,5 +58,21 @@ public class PerlinGenerator : MonoBehaviour
         Color perlinNoise=new Color(perlin,perlin,perlin);
 
         return perlinNoise;
+    }
+
+    public float[,] GetNoiseData(int w,int h,Vector2 centerPos,float noiseScale)
+    {
+        float[,] results=new float[w,h];
+        for (int i = 0; i < w; i++)
+        {
+            for (int j = 0; j < h; j++)
+            {
+                float xCoordinate = centerPos.x + (float) i / w * noiseScale;
+                float yCoordinate = centerPos.y + (float) j / h * noiseScale;
+                float perlin = Mathf.PerlinNoise(xCoordinate, yCoordinate);
+                results[i, j] = perlin;
+            }
+        }
+        return results;
     }
 }
