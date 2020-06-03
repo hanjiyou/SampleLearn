@@ -1,0 +1,71 @@
+ManifestFileVersion: 0
+CRC: 4274690489
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: helloworddefaultloader.lua.ab
+      Dependencies: {}
+    Info_1:
+      Name: audio/bgm/bgm_luckdraw_intro.ab
+      Dependencies: {}
+    Info_2:
+      Name: audio/bgm/bgm_luckdraw_loop.ab
+      Dependencies: {}
+    Info_3:
+      Name: audio/bgm/bgm_prebattle_intro.ab
+      Dependencies: {}
+    Info_4:
+      Name: audio/bgm/bgm_prebattle_loop.ab
+      Dependencies: {}
+    Info_5:
+      Name: audio/chatvioce/102.ab
+      Dependencies: {}
+    Info_6:
+      Name: audio/chatvioce/104.ab
+      Dependencies: {}
+    Info_7:
+      Name: audio/chatvioce/106.ab
+      Dependencies: {}
+    Info_8:
+      Name: audio/chatvioce/108.ab
+      Dependencies: {}
+    Info_9:
+      Name: audio/uivioce/arrived.ab
+      Dependencies: {}
+    Info_10:
+      Name: audio/uivioce/awardshow.ab
+      Dependencies: {}
+    Info_11:
+      Name: audio/uivioce/bahamutappear.ab
+      Dependencies: {}
+    Info_12:
+      Name: audio/uivioce/battlef.ab
+      Dependencies: {}
+    Info_13:
+      Name: gamedata/noupdate/systemconfig.ab
+      Dependencies: {}
+    Info_14:
+      Name: hexagonlmap/materials/touchmeshcolor.ab
+      Dependencies:
+        Dependency_0: hexagonlmap/shaders/vertexcolors.ab
+    Info_15:
+      Name: hexagonlmap/prefab/hexcell.ab
+      Dependencies: {}
+    Info_16:
+      Name: hexagonlmap/prefab/hexcelllabel.ab
+      Dependencies: {}
+    Info_17:
+      Name: hexagonlmap/shaders/vertexcolors.ab
+      Dependencies: {}
+    Info_18:
+      Name: odin/myscriptableobject.ab
+      Dependencies: {}
+    Info_19:
+      Name: xlua/executeluademo01.lua.ab
+      Dependencies: {}
+    Info_20:
+      Name: xlua/luacallcsharp.lua.ab
+      Dependencies: {}
+    Info_21:
+      Name: xlua/testsuffix.lua.ab
+      Dependencies: {}

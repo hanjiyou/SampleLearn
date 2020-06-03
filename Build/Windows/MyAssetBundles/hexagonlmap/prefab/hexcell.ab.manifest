@@ -1,0 +1,22 @@
+ManifestFileVersion: 0
+CRC: 1543052774
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0289e1a2d9aaa9e4b01c4b885b2a08b1
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: cd455d27fee728cbc81379591865783f
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9a5b3be2c9efe3545acc244ffd189207, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/HexagonlMap/Prefab/HexCell.prefab
+Dependencies: []

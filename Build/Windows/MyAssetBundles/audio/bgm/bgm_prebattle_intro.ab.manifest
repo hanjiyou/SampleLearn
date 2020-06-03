@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 261058000
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: afedf73601de6c60a91a955f68d3a8ad
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Audio/Bgm/BGM_PreBattle_Intro.ogg
+Dependencies: []

@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 1991272480
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 55204209f8f70657e3a0237df6125a8f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 51a16e16d5113854a16091e54ae5bb0d
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/HexagonlMap/Materials/TouchMeshColor.mat
+Dependencies:
+- D:/WorkSpace/SampleLearn/Build/Windows/MyAssetBundles/hexagonlmap/shaders/vertexcolors.ab

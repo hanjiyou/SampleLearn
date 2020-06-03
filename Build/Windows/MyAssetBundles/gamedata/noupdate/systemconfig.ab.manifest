@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 363147926
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 716c2573e8ef22864d87d59cdf3bbd3b
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5378aa20a47c6ee2f6d6133dbf0be4c6
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: db5a6c3f67a97464ab7c4bcaccd65af9, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/GameData/NoUpdate/SystemConfig.asset
+Dependencies: []

@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 2994443788
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1e8631b9a15c65b529340283c24cbf51
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Audio/UIVioce/BattleF.ogg
+Dependencies: []

@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 1843747415
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c7ea95cdd642c2f8f04da5988e2e399a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 11ab097294adba9b2209557c2b275462
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: 1b7fdc370b3681b469b0267e381990f7, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Odin/MyScriptableObject.asset
+Dependencies: []

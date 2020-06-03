@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 1339973139
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2fef7ac6c6d76a3d3b3dca0dd4f77756
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 7e9ee104d6bb707fb2602b751e6f78b1
+HashAppended: 0
+ClassTypes:
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/HexagonlMap/Shaders/VertexColors.shader
+Dependencies: []
