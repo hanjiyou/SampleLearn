@@ -1,10 +1,10 @@
-// - Unlit
+﻿// - Unlit
 // - Premultiplied Alpha Blending (Optional straight alpha input)
 // - Double-sided, no depth
 
-Shader "Spine/Special/Skeleton Grayscale" {
+Shader "Spine/Special/MySelfColorSpine" {
 	Properties {
-		    _SelfColor("SelfColor",Color)=(1,1,1,1)
+	    _SelfColor("SelfColor",Color)=(1,1,1,1)
 		_GrayPhase ("Phase", Range(0, 1)) = 1
 		[NoScaleOffset] _MainTex ("MainTex", 2D) = "white" {}
 		_Cutoff ("Shadow alpha cutoff", Range(0,1)) = 0.1
@@ -31,7 +31,7 @@ Shader "Spine/Special/Skeleton Grayscale" {
 			#pragma vertex vert
 			#pragma fragment frag
 			#include "UnityCG.cginc"
-						fixed4 _SelfColor;
+			fixed4 _SelfColor;
 			sampler2D _MainTex;
 			float _GrayPhase;
 
