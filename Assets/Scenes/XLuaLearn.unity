@@ -253,7 +253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1212967749
 Transform:
   m_ObjectHideFlags: 0
@@ -280,15 +280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20c3ab0e4eb0bef4ea9c0309732ec8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipsInjectionData:
-  - EquipId: 111
-    EquipName: "\u9752\u9F99\u5043\u6708\u5200"
-    EquipColor: 1
-    EquipDamage: 10
-  - EquipId: 112
-    EquipName: "\u65B9\u5929\u753B\u621F"
-    EquipColor: 1
-    EquipDamage: 10
   EquipLuaEntrance: {fileID: 4900000, guid: 30825cd5d90cadb45ac58a4fdb81c997, type: 3}
 --- !u!1 &1326020996
 GameObject:
@@ -331,6 +322,49 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8c4aec74d381fb47a27130e6752b908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1397448447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1397448448}
+  - component: {fileID: 1397448449}
+  m_Layer: 0
+  m_Name: 06-hotFix
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1397448448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397448447}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.724208, y: 0.22766258, z: -6.046574}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1397448449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397448447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f512c3b77596e94295b4c595d8d8cb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1668866014

@@ -1,0 +1,6 @@
+print('hhh bugfix')
+--require 'BugFix.ZodiacLoginWindow2Fix'
+
+xlua.hotfix(CS.XluaHotFixTest,'TestHotFix',function (self) 
+    print('hhh 替换后')
+end)
